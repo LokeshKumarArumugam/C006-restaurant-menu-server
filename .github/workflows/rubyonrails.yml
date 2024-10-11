@@ -25,11 +25,6 @@ jobs:
                 ruby-version: 4.2.3
                 bundler-cache: true
 
-            - name: Setup Yarn
-              uses: Borales/actions-yarn@v2.3.0
-              with:
-                cmd: install
-
             - name: Install Dependencies
               run: |
                 sudo apt install -yqq libpq-dev
