@@ -1,0 +1,45 @@
+name: "Ruby on Rails 4.2.3+ CI Deploy"
+on:
+    workflow_run:
+        branches:
+            - main
+        workflows:
+            - CI
+        types:
+            - completed
+concurrency:
+    group: development
+jobs:
+    ror:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        steps:
+            - name: Checkout project from Github
+              uses: actions/checkout@v3
+
+            - name: Setup Ruby on Rails v4.2.3+
+              uses: ruby/setup-ruby@v1.180.1
+              with:
+                ruby-version: 4.2.3
+                bundler-cache: true
+
+            - name: Setup Yarn
+              uses: Borales/actions-yarn@v2.3.0
+              with:
+                cmd: install
+
+            - name: Install Dependencies
+              run: |
+                sudo apt install -yqq libpq-dev
+                gem install bundler
+
+            - name: Install Gems
+              run: |
+                bundle install
+
+            - name: Run Ruby on Rails v4.2.3+ Server
+              run: |
+                bundle --without production
+                rake db:migrate
+                rake db:seed
+                rails server
