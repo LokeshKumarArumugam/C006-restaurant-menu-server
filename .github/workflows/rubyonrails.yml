@@ -5,6 +5,8 @@ on:
             - main
         workflows:
             - CI
+        types:
+            - completed
 concurrency:
     group: development
 jobs:
