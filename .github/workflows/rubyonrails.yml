@@ -7,6 +7,9 @@ on:
             - CI
         types:
             - completed
+    push:
+        branches:
+            - main
 concurrency:
     group: development
 jobs:
