@@ -5,26 +5,12 @@ on:
             - main
         workflows:
             - CI
-        types:
-            - completed
 concurrency:
     group: development
 jobs:
     tomo:
         runs-on: ubuntu-latest
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        services:
-            postgres:
-                image: postgres:11-alpine
-                ports:
-                    - "5432:5432"
-                env:
-                    POSTGRES_DB: rails_test
-                    POSTGRES_USER: rails
-                    POSTGRES_PASSWORD: password
-        env:
-            RAILS_ENV: development
-            DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
         steps:
             - name: Checkout project from Github
             - uses: actions/checkout@v3
