@@ -1,0 +1,14 @@
+Step-0: Download and Move "node.exe v15.2.0 and npm v6.14.13 files" into the restaurant-server directory
+Step-1: Install firebase tools: 
+            Extract preinstalled firebase-portable-v9.10.0.rar into the working firebase directory => preferred
+            ./npm install firebase-tools@9.10.0 => node 15.2.0 => npm 6.14.13 => secondary
+            npm install firebase-tools@3.18.2 => for npm 3.10.10 => older firebase with issues
+Step-2: Initialize firebase: 
+            firebase login => lokeshkumararumugam1@gmail.com
+            firebase init --project <projectID: c006-restaurant-server>
+            firebase list
+            firebase init => space to select features
+Step-3: Deploy firebase:
+            firebase deploy
+
+E.g: firebase init hosting --project c006-restaurant-server
